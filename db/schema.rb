@@ -10,45 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_18_220050) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_19_183155) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "employees", force: :cascade do |t|
-    t.decimal "base_salary", precision: 10, scale: 2
     t.datetime "created_at", null: false
-    t.integer "employment_type", default: 0, null: false
-    t.date "hire_date"
-    t.decimal "hourly_rate", precision: 10, scale: 2
+    t.decimal "hourly_rate", precision: 10, scale: 2, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["employment_type"], name: "index_employees_on_employment_type"
     t.index ["user_id"], name: "index_employees_on_user_id"
-  end
-
-  create_table "payroll_adjustments", force: :cascade do |t|
-    t.decimal "amount", precision: 10, scale: 2, null: false
-    t.datetime "created_at", null: false
-    t.string "description", null: false
-    t.integer "kind", null: false
-    t.bigint "payroll_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["kind"], name: "index_payroll_adjustments_on_kind"
-    t.index ["payroll_id"], name: "index_payroll_adjustments_on_payroll_id"
-  end
-
-  create_table "payrolls", force: :cascade do |t|
-    t.decimal "base_amount", precision: 10, scale: 2, default: "0.0", null: false
-    t.datetime "created_at", null: false
-    t.decimal "discount_amount", precision: 10, scale: 2, default: "0.0", null: false
-    t.bigint "employee_id", null: false
-    t.decimal "extra_amount", precision: 10, scale: 2, default: "0.0", null: false
-    t.boolean "locked", default: false, null: false
-    t.date "reference_month", null: false
-    t.decimal "total_amount", precision: 10, scale: 2, default: "0.0", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id", "reference_month"], name: "index_payrolls_on_employee_id_and_reference_month", unique: true
-    t.index ["employee_id"], name: "index_payrolls_on_employee_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -82,8 +53,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_18_220050) do
   end
 
   add_foreign_key "employees", "users"
-  add_foreign_key "payroll_adjustments", "payrolls"
-  add_foreign_key "payrolls", "employees"
   add_foreign_key "sessions", "users"
   add_foreign_key "time_punches", "employees"
 end
