@@ -27,6 +27,8 @@ gem "bcrypt", "~> 3.1.7"
 gem 'foreman', '~> 0.90.0'
 # use gem faker to create random names for tests
 gem 'faker', '~> 3.6'
+# for debugg
+gem 'pry-rails', '~> 0.3.11'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
