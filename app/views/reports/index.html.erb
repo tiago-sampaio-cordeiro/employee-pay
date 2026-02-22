@@ -54,18 +54,20 @@
     </thead>
 
     <tbody class="bg-white divide-y divide-gray-200">
-    <% @results.each do |result| %>
+    <% @results&.each do |result| %>
       <tr class="hover:bg-gray-50 transition">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
           <%= result[:employee].user.first_name %>
         </td>
 
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-          <%= result[:hours].round(2) %>
+          <%#= result[:hours].round(2) %> <!-- horas em decimal -->
+          <%= format_hours(result[:hours].round(2)) %>
         </td>
 
         <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-          <%= number_to_currency(result[:amount], unit: "R$") %>
+          <%= number_to_currency(result[:amount], unit: "R$", separator: ",", delimiter: ".") %>
+          <%#= result[:amount]  %> <!-- valor sem formatar -->
         </td>
       </tr>
     <% end %>

@@ -1,25 +1,38 @@
 class ReportsController < ApplicationController
   def index
     range = build_range
-
-    employees = Employee.includes(:user, :time_punches)
-
-    @results = employees.map do |employee|
-      amount = Payroll::Payment
-                 .new(employee: employee, range: range)
-                 .call
-
-      {
-        employee: employee,
-        hours: Payroll::HoursCalculator
-                 .new(employee: employee, range: range)
-                 .call,
-        amount: amount
-      }
-    end
+    @results = build_reports(range)
   end
 
   private
+
+  def build_reports(range)
+    # return [] unless Current.user ## caso gere erro na linha 58 de views/reports/index.html.erb
+    if Current.user.admin?
+      build_report_admin(range)
+    else
+      build_report_employee(range)
+    end
+  end
+
+  def build_report_admin(range)
+    Employee.includes(:time_punches).map do |employee|
+      build_result(employee, range)
+    end
+  end
+
+  def build_report_employee(range)
+    employee = Current.user.employee
+    [ build_result(employee, range) ]
+  end
+
+  def build_result(employee,range)
+    {
+      employee: employee,
+      hours: Payroll::HoursCalculator.new(employee: employee, range: range).call,
+      amount: Payroll::Payment.new(employee: employee, range: range).call
+    }
+  end
 
   def build_range
     if params[:start_date].present? && params[:end_date].present?
