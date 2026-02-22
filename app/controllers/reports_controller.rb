@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
     [ build_result(employee, range) ]
   end
 
-  def build_result(employee,range)
+  def build_result(employee, range)
     {
       employee: employee,
       hours: Payroll::HoursCalculator.new(employee: employee, range: range).call,

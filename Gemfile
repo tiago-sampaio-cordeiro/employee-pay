@@ -17,18 +17,18 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # use gem view_component to components
-gem 'view_component', '~> 4.4'
+gem "view_component", "~> 4.4"
 # use gem tailwindcss to frontend
-gem 'tailwindcss-rails', '~> 4.4'
-gem 'tailwindcss-ruby', '~> 4.1', '>= 4.1.18'
+gem "tailwindcss-rails", "~> 4.4"
+gem "tailwindcss-ruby", "~> 4.1", ">= 4.1.18"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 # use foreman to run multiples process(Rails + tailwind watcher)
-gem 'foreman', '~> 0.90.0'
+gem "foreman", "~> 0.90.0"
 # use gem faker to create random names for tests
-gem 'faker', '~> 3.6'
+gem "faker", "~> 3.6"
 # for debugg
-gem 'pry-rails', '~> 0.3.11'
+gem "pry-rails", "~> 0.3.11"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
