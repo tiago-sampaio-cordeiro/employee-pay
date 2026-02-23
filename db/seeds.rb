@@ -9,8 +9,8 @@
 #   end
 
 # cria usuários e employees
-10.times do |user, employee|
-  puts "criando user #{user}"
+10.times do |i|
+  puts "criando user #{i}"
   user = User.create!(
     email_address: Faker::Internet.email,
     password: "1234",
@@ -19,13 +19,13 @@
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
   )
-  puts "criando tabela #{employee}"
+  puts "criando tabela #{i}"
   employee = Employee.create!(
     user: user,
     hourly_rate: Faker::Number.decimal(l_digits: 2, r_digits: 2),
   )
 
-  300.downto(0) do |i|
+  0.downto(0) do |i|
     puts "criando tabela de registro de pontos #{i}"
     date = i.days.ago.to_date
 

@@ -56,8 +56,9 @@
     <tbody class="bg-white divide-y divide-gray-200">
     <% @results&.each do |result| %>
       <tr class="hover:bg-gray-50 transition">
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        <td class=" flex-row px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
           <%= result[:employee].user.first_name %>
+          <%= result[:employee].user.last_name %>
         </td>
 
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">

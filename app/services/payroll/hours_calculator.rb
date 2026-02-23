@@ -7,13 +7,12 @@ module Payroll
 
     def call
       punches = fetch_punches
-
       total_seconds = punches.each_slice(2).sum do |clock_in, clock_out|
-        clock_out.punched_at - clock_in.punched_at
+        next 0 if clock_out.nil?
+        clock_out.punched_at.to_time - clock_in.punched_at.to_time
       end
-      # puts "Esse é o total em segundos do periodo: #{total_seconds}"
 
-      total_seconds / 3600
+      total_seconds / 3600.0
     end
 
     private
