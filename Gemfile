@@ -29,6 +29,8 @@ gem "foreman", "~> 0.90.0"
 gem "faker", "~> 3.6"
 # for debugg
 gem "pry-rails", "~> 0.3.11"
+# linguagem
+gem "rails-i18n"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
