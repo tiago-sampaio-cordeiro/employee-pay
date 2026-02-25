@@ -23,12 +23,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-slate-700">
+  <body class="bg-slate-700 pb-24">
     <% if authenticated? %>
       <%= render Navbar::NavbarComponent.new %>
     <% end %>
     <main>
       <%= yield %>
     </main>
+    <%= render Footer::FooterComponent.new %>
   </body>
 </html>
