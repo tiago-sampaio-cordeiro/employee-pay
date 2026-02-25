@@ -24,7 +24,10 @@
   </head>
 
   <body class="bg-slate-700">
-  <main>
+    <% if authenticated? %>
+      <%= render NavbarComponent.new %>
+    <% end %>
+    <main>
       <%= yield %>
     </main>
   </body>
