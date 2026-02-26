@@ -1,4 +1,31 @@
-<div>
-  <h1 class="font-bold text-4xl">Registers#edit</h1>
-  <p>Find me in app/views/registers/edit.html.erb</p>
+<div class="min-h-screen bg-gray-950 flex items-start justify-center p-6 pt-10">
+  <div class="w-full max-w-xl lg:max-w-lg">
+
+    <% if notice = flash[:notice] %>
+      <div class="mb-6 px-4 py-3 bg-emerald-950 border border-emerald-700 text-emerald-400 text-sm rounded-lg text-center tracking-wide">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert = flash[:alert] %>
+      <div class="mb-6 px-4 py-3 bg-rose-950 border border-rose-700 text-rose-400 text-sm rounded-lg text-center tracking-wide">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <div class="bg-gray-800 border border-gray-700 rounded-2xl p-8 shadow-2xl">
+      <div class="mb-8">
+        <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Funcionários</p>
+        <h1 class="text-2xl font-bold text-white">Editar Funcionário</h1>
+      </div>
+
+      <%= render "shared/form_registers",
+                 form_url: register_path(@user),
+                 form_method: :patch,
+                 user: @user,
+                 submit_label: "Salvar",
+                 password_label: "Nova Senha",
+                 password_placeholder: "Deixe em branco para manter a atual" %>
+    </div>
+
+  </div>
 </div>
