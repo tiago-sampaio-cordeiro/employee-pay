@@ -65,7 +65,9 @@
       <div class="space-y-1 px-2 pt-2 pb-3">
         <%= link_to "Studio Hall", "#", class: "block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white" %>
         <%= link_to "Home", root_path, class: "block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
-        <%= link_to "Registrar ponto", employees_path, class: "block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+        <% if Current.user.employee? %>
+          <%= link_to "Registrar ponto", employees_path, class: "block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+        <% end %>
         <%= link_to "Relatórios", reports_path, class: "block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
         <%= button_to "Log out", session_path, class: "block rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white", method: :delete if Current.user %>
       </div>
