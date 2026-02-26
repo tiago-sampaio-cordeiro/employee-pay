@@ -27,7 +27,7 @@
     <% if authenticated? %>
       <%= render Navbar::NavbarComponent.new %>
     <% end %>
-    <main>
+    <main class="mt-32">
       <%= yield %>
     </main>
     <%= render Footer::FooterComponent.new %>

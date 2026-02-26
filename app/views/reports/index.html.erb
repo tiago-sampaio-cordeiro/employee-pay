@@ -1,8 +1,8 @@
-<div class="max-w-5xl mx-auto p-6">
+<div class="max-w-5xl mx-auto">
 
   <%= render Pages::PageTitleComponent.new(title: "Relatórios") %>
 
-  <div class="bg-white shadow-md rounded-lg p-6 mb-8 mt-6">
+  <div class="bg-white shadow-md rounded-lg p-6 mb-8">
     <%= form_with url: reports_path, method: :get, local: true,
                   class: "grid grid-cols-1 md:grid-cols-3 gap-4 items-end" do %>
 
