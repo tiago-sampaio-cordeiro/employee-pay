@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_192108) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_193939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_192108) do
   create_table "pix_keys", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "employee_id", null: false
-    t.string "number"
+    t.string "key"
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_pix_keys_on_employee_id"
   end
