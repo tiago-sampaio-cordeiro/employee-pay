@@ -36,27 +36,36 @@
     </div>
 
     <%# Telefones dinâmicos %>
-    <div>
-      <%= f.label :phones, "Telefones", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-      <div id="phones-container" class="space-y-2">
-        <div class="flex gap-2 phone-field">
-          <input type="tel" name="phones[]" placeholder="(00) 00000-0000"
-                 class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
-          <button type="button" onclick="removeField(this, 'phones-container', 'phone-field')"
-                  class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= f.label :phones, "Telefones", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <div id="phones-container" class="space-y-2">
+          <div class="flex gap-2 phone-field">
+            <input type="tel" name="phones[]" placeholder="(00) 00000-0000"
+                   class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
+            <button type="button" onclick="removeField(this, 'phones-container', 'phone-field')"
+                    class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
         </div>
+        <button type="button" onclick="addPhone()"
+                class="mt-2 flex items-center gap-1.5 text-xs text-emerald-500 hover:text-emerald-400 transition-colors duration-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          Adicionar telefone
+        </button>
       </div>
-      <button type="button" onclick="addPhone()"
-              class="mt-2 flex items-center gap-1.5 text-xs text-emerald-500 hover:text-emerald-400 transition-colors duration-200">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-        </svg>
-        Adicionar telefone
-      </button>
+      <div>
+        <%= f.label :gender, "Gênero", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.select :gender,
+                     [["Masculino", "masculino"], ["Feminino", "feminino"]],
+                     { prompt: "Selecione", selected: "" }, # { prompt: "Selecione", selected: user.gender },
+                     class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
+      </div>
     </div>
   </div>
 
