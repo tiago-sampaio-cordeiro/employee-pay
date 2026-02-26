@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_021300) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_183802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "employees", force: :cascade do |t|
+    t.string "address", null: false
+    t.date "admission_date"
+    t.date "birth_date", null: false
+    t.string "cnpj"
+    t.integer "contract_type", default: 0, null: false
     t.datetime "created_at", null: false
+    t.string "ctps"
+    t.string "gender", null: false
     t.decimal "hourly_rate", precision: 10, scale: 2, null: false
+    t.string "pis"
+    t.string "position"
+    t.decimal "salary", precision: 10, scale: 2
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_employees_on_user_id"
