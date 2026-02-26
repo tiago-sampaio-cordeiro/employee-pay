@@ -25,7 +25,7 @@
               <%= link_to "Studio Hall", "#", class: "rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white" %>
               <%= link_to "Home", root_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
               <% if Current.user.admin? %>
-                <%= link_to "Funcionaŕios", registers_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
+                <%= link_to "Funcionários", registers_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
               <% end %>
               <% if Current.user.employee? %>
                 <%= link_to "Registrar ponto", employees_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white" %>
