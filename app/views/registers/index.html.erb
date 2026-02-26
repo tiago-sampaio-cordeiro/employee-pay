@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Registers#index</h1>
-  <p>Find me in app/views/registers/index.html.erb</p>
+<div class="min-h-screen p-6">
+  <div class="max-w-5xl mx-auto">
+
+    <%= render Pages::PageTitleComponent.new(title: "Funcionários") %>
+
+    <div class="flex items-center justify-between mb-8">
+      <%= link_to "Novo Funcionário", new_register_path,
+                  class: "bg-emerald-500 hover:bg-emerald-400 text-gray-950 text-sm font-semibold
+                    px-6 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/20" %>
+    </div>
+  </div>
 </div>
