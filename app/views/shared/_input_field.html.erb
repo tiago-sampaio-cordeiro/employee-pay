@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-1">
+  <%= form.label field, label, class: "font-sans-serif text-yellow-400" %>
+  <%= form.send(input_type, field, autocomplete: "username",
+                placeholder: placeholder,
+                class: "
+        #{size}
+        block
+        shadow-sm rounded-4xl
+        placeholder:text-slate-500 text-white
+        focus:outline-none focus:shadow-blue-100 focus:ring-0 focus:outline-blue-600
+        border border-gray-300
+        px-3 py-2 mt-2", **options
+      ) %>
+</div>
