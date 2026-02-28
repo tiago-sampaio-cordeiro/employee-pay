@@ -6,6 +6,7 @@ module Payroll
     end
 
     def call
+      return 0 unless employee.hourly_rate
       calculator = HoursCalculator.new(employee: employee, range: range).call
       (calculator * employee.hourly_rate).to_f
     end
