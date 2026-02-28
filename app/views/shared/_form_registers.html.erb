@@ -3,7 +3,7 @@
   <%# SEÇÃO: Dados Pessoais %>
   <div class="mb-4">
     <p class="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-4">Dados Pessoais</p>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4">
       <div>
         <%= f.label :first_name, "Primeiro Nome", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.text_field :first_name, value: user.first_name, placeholder: "João",
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid sm:grid-col md:grid-cols-2 gap-4">
       <div>
         <%= f.label :email_address, "E-mail", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.email_field :email_address, value: user.email_address, placeholder: "joao@email.com",
@@ -35,29 +35,12 @@
       </div>
     </div>
 
-    <%# Telefones dinâmicos %>
+    <%# Telefone %>
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <%= f.label :phones, "Telefones", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <div id="phones-container" class="space-y-2">
-          <div class="flex gap-2 phone-field">
-            <input type="tel" name="phones[]" placeholder="(00) 00000-0000"
-                   class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
-            <button type="button" onclick="removeField(this, 'phones-container', 'phone-field')"
-                    class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <button type="button" onclick="addPhone()"
-                class="mt-2 flex items-center gap-1.5 text-xs text-emerald-500 hover:text-emerald-400 transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-          </svg>
-          Adicionar telefone
-        </button>
+        <%= f.label :phone_number, "Telefone", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :phone_number, value: user.employee&.phone_number, placeholder: "Digite o telefone do funcionario",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
       <div>
         <%= f.label :gender, "Gênero", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
@@ -78,7 +61,7 @@
     <div class="grid grid-cols-2 gap-3 mb-5">
       <label class="flex items-center gap-3 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 cursor-pointer hover:border-emerald-500 transition-colors duration-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950"
              id="label-clt">
-        <%= f.radio_button :contract_type, "clt", onchange: "toggleContractFields('clt')",
+        <%= f.radio_button :contract_type, "clt", onchange: "toggleContractFields('clt')", checked: user.employee.clt?,
                            class: "w-4 h-4 text-emerald-500 border-gray-500 bg-gray-700 focus:outline-none focus:ring-0" %>
         <div>
           <span class="text-sm font-medium text-gray-300">CLT</span>
@@ -87,7 +70,7 @@
       </label>
       <label class="flex items-center gap-3 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 cursor-pointer hover:border-emerald-500 transition-colors duration-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950"
              id="label-freelancer">
-        <%= f.radio_button :contract_type, "freelancer", onchange: "toggleContractFields('freelancer')",
+        <%= f.radio_button :contract_type, "freelancer", onchange: "toggleContractFields('freelancer')", checked: user.employee.freelancer?,
                            class: "w-4 h-4 text-emerald-500 border-gray-500 bg-gray-700 focus:outline-none focus:ring-0" %>
         <div>
           <span class="text-sm font-medium text-gray-300">Freelancer</span>
@@ -161,47 +144,11 @@
   <div class="mb-4">
     <p class="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-4">Dados Bancários</p>
     <div class="space-y-4">
-
-      <div class="grid grid-cols-3 gap-4">
-        <div>
-          <%= f.label :bank_name, "Banco", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-          <%= f.text_field :bank_name,name:"banks[][name]", placeholder: "Ex: Nubank",
-                           class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
-        </div>
-        <div>
-          <%= f.label :bank_agency, "Agência", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-          <%= f.text_field :bank_agency, name:"banks[][agency]", placeholder: "0000",
-                           class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
-        </div>
-        <div>
-          <%= f.label :bank_account, "Conta", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-          <%= f.text_field :bank_account, name:"banks[][account]", placeholder: "00000-0",
-                           class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
-        </div>
-      </div>
-
-      <%# Chaves PIX dinâmicas %>
+      <%# Chave PIX %>
       <div>
-        <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Chaves PIX</label>
-        <div id="pix-container" class="space-y-2">
-          <div class="flex gap-2 pix-field">
-            <input type="text" name="pix_keys[]" placeholder="CPF, e-mail, telefone ou chave aleatória"
-                   class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
-            <button type="button" onclick="removeField(this, 'pix-container', 'pix-field')"
-                    class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <button type="button" onclick="addPix()"
-                class="mt-2 flex items-center gap-1.5 text-xs text-emerald-500 hover:text-emerald-400 transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-          </svg>
-          Adicionar chave PIX
-        </button>
+        <%= f.label :pix_key, class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :pix_key, value: user.employee&.pix_key,
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
 
     </div>
@@ -213,19 +160,6 @@
   <div class="mb-4">
     <p class="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-4">Acesso ao Sistema</p>
     <div class="space-y-4">
-
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <%= f.label :password, password_label, class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-          <%= f.password_field :password, placeholder: password_placeholder,
-                               class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
-        </div>
-        <div>
-          <%= f.label :password_confirmation, "Confirmar Senha", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-          <%= f.password_field :password_confirmation, placeholder: "••••••••",
-                               class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
-        </div>
-      </div>
 
       <div>
         <p class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Perfil</p>
@@ -244,6 +178,19 @@
               <p class="text-xs text-gray-500">Acesso total</p>
             </div>
           </label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <%= f.label :password, password_label, class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+          <%= f.password_field :password, placeholder: password_placeholder,
+                               class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, "Confirmar Senha", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+          <%= f.password_field :password_confirmation, placeholder: "••••••••",
+                               class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
         </div>
       </div>
 
@@ -269,48 +216,6 @@
 <% end %>
 
 <script>
-    function addPhone() {
-        const container = document.getElementById('phones-container');
-        const div = document.createElement('div');
-        div.className = 'flex gap-2 phone-field';
-        div.innerHTML = `
-      <input type="tel" name="phones[]" placeholder="(00) 00000-0000"
-        class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
-      <button type="button" onclick="removeField(this, 'phones-container', 'phone-field')"
-        class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    `;
-        container.appendChild(div);
-    }
-
-    function addPix() {
-        const container = document.getElementById('pix-container');
-        const div = document.createElement('div');
-        div.className = 'flex gap-2 pix-field';
-        div.innerHTML = `
-      <input type="text" name="pix_keys[]" placeholder="CPF, e-mail, telefone ou chave aleatória"
-        class="flex-1 bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200">
-      <button type="button" onclick="removeField(this, 'pix-container', 'pix-field')"
-        class="px-3 rounded-lg border border-gray-600 text-gray-500 hover:border-rose-700 hover:text-rose-500 transition-colors duration-200">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    `;
-        container.appendChild(div);
-    }
-
-    function removeField(btn, containerId, fieldClass) {
-        const container = document.getElementById(containerId);
-        const fields = container.querySelectorAll('.' + fieldClass);
-        if (fields.length > 1) {
-            btn.closest('.' + fieldClass).remove();
-        }
-    }
-
     function toggleContractFields(type) {
         const clt = document.getElementById('clt-fields');
         const freelancer = document.getElementById('freelancer-fields');
