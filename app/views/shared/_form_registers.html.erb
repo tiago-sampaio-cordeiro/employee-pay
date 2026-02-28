@@ -5,7 +5,7 @@
     <p class="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-4">Dados Pessoais</p>
     <div class="grid sm:grid-col md:grid-cols-3 gap-4">
       <div>
-        <%= f.label :first_name, "Primeiro Nome", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.label :first_name, "Nome do funcionário", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.text_field :first_name, value: user.first_name, placeholder: "João",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
@@ -20,26 +20,45 @@
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
     </div>
-
-    <div class="grid sm:grid-col md:grid-cols-2 gap-4">
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
+      <div>
+        <%= f.label :rg, "rg", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :rg, value: user.employee&.mother_name, placeholder: "Maria",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :cpf, "cpf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :cpf, value: user.employee&.mother_last_name, placeholder: "Ex: 000000000",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
       <div>
         <%= f.label :email_address, "E-mail", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.email_field :email_address, value: user.email_address, placeholder: "joao@email.com",
                           class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
-
+    </div>
+    <div class="grid sm:grid-col md:grid-cols-2 gap-4 mt-4">
       <div>
-        <%= f.label :address, "Rua", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :address, value: user.employee&.address, placeholder: "Digite o endereço do funcionário",
+        <%= f.label :mother_name, "Nome da mãe", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :mother_name, value: user.employee&.mother_name, placeholder: "Maria",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :mother_last_name, "Sobrenome da mãe", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :mother_last_name, value: user.employee&.mother_last_name, placeholder: "Silva",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
     </div>
-
     <%# Telefone %>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid sm:grid-col grid-cols-3 gap-4 mt-4">
       <div>
         <%= f.label :phone_number, "Telefone", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :phone_number, value: user.employee&.phone_number, placeholder: "Digite o telefone do funcionario",
+        <%= f.text_field :phone_number, value: user.employee&.phone_number, placeholder: "telefone do funcionario",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
+      </div>
+      <div>
+        <%= f.label :emergency_phone_number, "Telefone de emergência", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :emergency_phone_number, value: user.employee&.phone_number, placeholder: "Telefone de emergência",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
       <div>
@@ -50,6 +69,114 @@
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
       </div>
     </div>
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
+      <div>
+        <%= f.label :nacionality, "Nacionalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :nationality, value: user.first_name, placeholder: "Pais do funcionario",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :naturalidade, "Naturalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :naturalidade, value: user.last_name, placeholder: "Cidade onde nasceu",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :uf_born, "uf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :uf_born, value: user.employee&.birth_date, placeholder: "uf de onde nasceu",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <div>
+        <%= f.label :blood_group, "Tipo sanguineo", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.select :blood_group,
+                     [["A+", "A+"],
+                      ["A-", "A-"],
+                      ["B+", "B+"],
+                      ["B-", "B-"],
+                      ["AB+", "AB+"],
+                      ["AB-", "AB-"]],
+                     { prompt: "Selecione", selected: user.employee&.gender },
+                     class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
+      </div>
+      <div>
+        <%= f.label :allergies, "Alergias", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :allergies, value: user.employee&.phone_number, placeholder: "Digite as alergias do funcionario",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
+      <div>
+        <%= f.label :driver_license, "Possui habilitação de motorista", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.select :driver_license,
+                     [["Sim", "Sim"], ["Não", "Não"]],
+                     { prompt: "Selecione", selected: user.employee&.gender },
+                     class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
+      </div>
+      <div>
+        <%= f.label :driver_license_category, "Categoria da habilitaçao", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.select :driver_license_category,
+                     [["A", "A"],
+                      ["B", "B"],
+                      ["AB", "AB"],
+                      ["AC", "AC"],
+                      ["AD", "AD"],
+                      ["AE", "AE"],
+                      ["BC", "BC"],
+                      ["BD", "BD"],
+                      ["BE", "BE"],
+                     ],
+                     { prompt: "Selecione", selected: user.employee&.gender },
+                     class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
+      </div>
+      <div>
+        <%= f.label :driver_license_number, "Número da habilitação", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :driver_license_number, value: user.employee&.birth_date, placeholder: "Digite o numero da habilitação",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
+      </div>
+    </div>
+
+
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
+      <div>
+        <%= f.label :cep, "cep", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :cep, value: user.employee&.address, placeholder: "Digite o cep",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :address, "Rua", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :address, value: user.employee&.address, placeholder: "Digite o endereço do funcionário",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :house_number, "numero", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :house_number, value: user.employee&.address, placeholder: "Digite o numero do local",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+    </div>
+    <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
+      <div>
+        <%= f.label :neighborhood, "bairro", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :neighborhood, value: user.employee&.address, placeholder: "Digite o cep",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :city, "cidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :city, value: user.employee&.address, placeholder: "Digite a cidade",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+      <div>
+        <%= f.label :uf_live, "uf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :uf_live, value: user.employee&.address, placeholder: "uf de onde vive",
+                         class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
+      </div>
+    </div>
+  </div>
+  <div class="gap-4 mt-4">
+    <%= f.label :references, "Referencia", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+    <%= f.text_field :references, value: user.first_name, placeholder: "Ex: mercado, loja, escola, banco,...",
+                     class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
   </div>
 
   <div class="border-t border-gray-700 my-6"></div>
@@ -61,7 +188,7 @@
     <div class="grid grid-cols-2 gap-3 mb-5">
       <label class="flex items-center gap-3 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 cursor-pointer hover:border-emerald-500 transition-colors duration-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950"
              id="label-clt">
-        <%= f.radio_button :contract_type, "clt", onchange: "toggleContractFields('clt')", checked: user.employee.clt?,
+        <%= f.radio_button :contract_type, "clt", onchange: "toggleContractFields('clt')", checked: user.employee&.clt?,
                            class: "w-4 h-4 text-emerald-500 border-gray-500 bg-gray-700 focus:outline-none focus:ring-0" %>
         <div>
           <span class="text-sm font-medium text-gray-300">CLT</span>
@@ -70,7 +197,7 @@
       </label>
       <label class="flex items-center gap-3 bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 cursor-pointer hover:border-emerald-500 transition-colors duration-200 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-950"
              id="label-freelancer">
-        <%= f.radio_button :contract_type, "freelancer", onchange: "toggleContractFields('freelancer')", checked: user.employee.freelancer?,
+        <%= f.radio_button :contract_type, "freelancer", onchange: "toggleContractFields('freelancer')", checked: user.employee&.freelancer?,
                            class: "w-4 h-4 text-emerald-500 border-gray-500 bg-gray-700 focus:outline-none focus:ring-0" %>
         <div>
           <span class="text-sm font-medium text-gray-300">Freelancer</span>
