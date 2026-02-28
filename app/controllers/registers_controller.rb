@@ -31,9 +31,8 @@ class RegistersController < ApplicationController
       ctps: employee_params[:ctps],
       position: employee_params[:position],
       cnpj: employee_params[:cnpj],
-      phone_numbers: employee_params[:phones] || [],
-      pix_keys: employee_params[:pix_keys] || [],
-      banks: employee_params[:banks] || [],
+      phone_number: employee_params[:phone_number],
+      pix_key: employee_params[:pix_key],
       user_id: nil
     )
 
@@ -64,9 +63,8 @@ class RegistersController < ApplicationController
       ctps: employee_params[:ctps],
       position: employee_params[:position],
       cnpj: employee_params[:cnpj],
-      phone_numbers: employee_params[:phones] || [],
-      pix_keys: employee_params[:pix_keys] || [],
-      banks: employee_params[:banks] || [],
+      phone_number: employee_params[:phone_number],
+      pix_key: employee_params[:pix_key],
       user_id: params[:id]
     )
 
@@ -87,9 +85,7 @@ class RegistersController < ApplicationController
     params.permit(
       :first_name, :last_name, :email_address, :active, :role, :password, :password_confirmation, :hourly_rate,
       :user_id, :birth_date, :gender, :admission_date, :contract_type, :address, :salary, :pis, :ctps, :position, :cnpj,
-      phones: [],
-      pix_keys: [],
-      banks: [:name, :agency, :account]
+      :phone_number, :pix_key
     )
   end
 end

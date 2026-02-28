@@ -1,9 +1,8 @@
 module Register
   class EmployeeRecords
     def initialize(first_name:, last_name:, email_address:, active:, role:, password:, password_confirmation:,
-                   phone_numbers:, hourly_rate:, birth_date:,
-                   gender:, admission_date:, address:, contract_type:, salary:, pis:, ctps:, position:,
-                   cnpj:, pix_keys:, banks:, user_id:)
+                   hourly_rate:, birth_date:, gender:, admission_date:, address:, contract_type:,
+                   salary:, pis:, ctps:, position:, cnpj:, phone_number:, pix_key:, user_id:)
       @first_name = first_name
       @last_name = last_name
       @email_address = email_address
@@ -11,7 +10,6 @@ module Register
       @role = role
       @password = password
       @password_confirmation = password_confirmation
-      @phone_numbers = phone_numbers
       @birth_date = birth_date
       @hourly_rate = hourly_rate
       @gender = gender
@@ -23,8 +21,8 @@ module Register
       @ctps = ctps
       @position = position
       @cnpj = cnpj
-      @pix_keys = pix_keys
-      @banks = banks
+      @phone_number = phone_number
+      @pix_key = pix_key
       @user_id = user_id
     end
 
@@ -40,8 +38,7 @@ module Register
 
     attr_reader :user_id, :first_name, :last_name, :email_address, :active, :role, :password, :password_confirmation,
                 :hourly_rate, :contract_type, :salary, :pis, :ctps, :position, :cnpj, :gender, :birth_date,
-                :admission_date, :address,
-                :phone_numbers, :pix_keys, :banks
+                :admission_date, :address, :phone_number, :pix_key
 
     def create_new_employee
       user = User.create!(
@@ -65,11 +62,10 @@ module Register
         ctps: ctps,
         position: position,
         cnpj: cnpj,
+        phone_number: phone_number,
+        pix_key: pix_key,
         user: user
       )
-      Register::Phone.new(employee: employee, phone_numbers: phone_numbers).call
-      Register::PixKey.new(employee: employee, pix_keys: pix_keys).call
-      Register::Bank.new(employee: employee, banks: banks).call
     end
 
     def update_employee
@@ -94,16 +90,10 @@ module Register
         pis: pis,
         ctps: ctps,
         position: position,
-        cnpj: cnpj
+        cnpj: cnpj,
+        phone_number: phone_number,
+        pix_key: pix_key
       )
-
-      employee.phones.destroy_all
-      employee.pix_keys.destroy_all
-      employee.banks.destroy_all
-
-      Register::Phone.new(employee: employee, phone_numbers: phone_numbers).call
-      Register::PixKey.new(employee: employee, pix_keys: pix_keys).call
-      Register::Bank.new(employee: employee, banks: banks).call
     end
   end
 end

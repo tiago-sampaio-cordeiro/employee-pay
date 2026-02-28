@@ -11,7 +11,7 @@
         <% end %>
         <div>
           <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">
-            <%= @user.employee.gender == "feminino" ? "Funcionária" : "Funcionário" %>
+            <%= @user.employee&.gender == "feminino" ? "Funcionária" : "Funcionário" %>
           </p>
 
           <h1 class="text-2xl font-bold text-white">
@@ -73,21 +73,22 @@
             <span class="text-gray-500 text-sm">Gênero</span>
             <span class="text-white text-sm capitalize"><%= @user.employee&.gender || "—" %></span>
           </div>
-          <div class="flex justify-between">
+          <div class="flex flex-col">
             <span class="text-gray-500 text-sm">Endereço</span>
             <span class="text-white text-sm"><%= @user.employee&.address || "—" %></span>
           </div>
-        </div>
-
-        <%# Telefones %>
-        <% if @user.employee&.phones&.any? %>
+          <%# Telefones %>
           <div class="mt-4 pt-4 border-t border-gray-700">
-            <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Telefones</p>
-            <% @user.employee.phones.each do |phone| %>
-              <p class="text-white text-sm"><%= phone.number %></p>
-            <% end %>
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Telefone</p>
+            <p class="text-white text-sm">
+              <%= @user.employee&.phone_number %></p>
           </div>
-        <% end %>
+          <%# Chaves PIX %>
+          <div class="mt-4 pt-4 border-t border-gray-700">
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Chaves PIX</p>
+            <p class="text-white text-sm"><%= @user.employee&.pix_key %></p>
+          </div>
+        </div>
       </div>
 
       <%# Dados do Contrato %>
@@ -132,41 +133,6 @@
         <% end %>
       </div>
 
-      <%# Dados Bancários %>
-      <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6">
-        <p class="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-4">Dados Bancários</p>
-        <% if @user.employee&.banks&.any? %>
-          <div class="space-y-4">
-            <% @user.employee.banks.each do |bank| %>
-              <div class="bg-gray-700 rounded-xl p-4 space-y-2">
-                <p class="text-white text-sm font-medium"><%= bank[:name] %></p>
-                <div class="flex gap-6">
-                  <div>
-                    <p class="text-gray-500 text-xs">Agência</p>
-                    <p class="text-white text-sm"><%= bank.agency %></p>
-                  </div>
-                  <div>
-                    <p class="text-gray-500 text-xs">Conta</p>
-                    <p class="text-white text-sm"><%= bank.account %></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="text-gray-600 text-sm">Nenhum banco cadastrado.</p>
-        <% end %>
-
-        <%# Chaves PIX %>
-        <% if @user.employee&.pix_keys&.any? %>
-          <div class="mt-4 pt-4 border-t border-gray-700">
-            <p class="text-gray-500 text-xs uppercase tracking-wider mb-2">Chaves PIX</p>
-            <% @user.employee.pix_keys.each do |pix| %>
-              <p class="text-white text-sm"><%= pix.key %></p>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
 
     </div>
   </div>
