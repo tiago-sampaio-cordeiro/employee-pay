@@ -71,13 +71,13 @@
     </div>
     <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
       <div>
-        <%= f.label :nacionality, "Nacionalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.label :nationality, "Nacionalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.text_field :nationality, value: user.first_name, placeholder: "Pais do funcionario",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
-        <%= f.label :naturalidade, "Naturalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :naturalidade, value: user.last_name, placeholder: "Cidade onde nasceu",
+        <%= f.label :city_born, "Naturalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+        <%= f.text_field :city_born, value: user.last_name, placeholder: "Cidade onde nasceu",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
@@ -174,8 +174,8 @@
     </div>
   </div>
   <div class="gap-4 mt-4">
-    <%= f.label :references, "Referencia", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-    <%= f.text_field :references, value: user.first_name, placeholder: "Ex: mercado, loja, escola, banco,...",
+    <%= f.label :reference, "Referencia", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
+    <%= f.text_field :reference, value: user.first_name, placeholder: "Ex: mercado, loja, escola, banco,...",
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
   </div>
 
