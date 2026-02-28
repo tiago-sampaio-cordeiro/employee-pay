@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_27_004355) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_27_182730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
-
-  create_table "banks", force: :cascade do |t|
-    t.string "account", null: false
-    t.string "agency", null: false
-    t.datetime "created_at", null: false
-    t.bigint "employee_id", null: false
-    t.string "name", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_banks_on_employee_id"
-  end
 
   create_table "employees", force: :cascade do |t|
     t.string "address", null: false
@@ -34,28 +24,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_004355) do
     t.string "ctps"
     t.string "gender", null: false
     t.decimal "hourly_rate", precision: 10, scale: 2
+    t.string "phone_number"
     t.string "pis"
+    t.string "pix_key"
     t.string "position"
     t.decimal "salary", precision: 10, scale: 2
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_employees_on_user_id"
-  end
-
-  create_table "phones", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "employee_id", null: false
-    t.string "number", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_phones_on_employee_id"
-  end
-
-  create_table "pix_keys", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "employee_id", null: false
-    t.string "key"
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_pix_keys_on_employee_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -90,10 +66,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_004355) do
     t.index ["role"], name: "index_users_on_role"
   end
 
-  add_foreign_key "banks", "employees"
   add_foreign_key "employees", "users"
-  add_foreign_key "phones", "employees"
-  add_foreign_key "pix_keys", "employees"
   add_foreign_key "sessions", "users"
   add_foreign_key "time_punches", "employees"
 end
