@@ -9,33 +9,60 @@
 #   end
 
 # cria usuários e employees
+ROLES = %i[employee admin]
+CONTRACT_TYPES = %i[freelancer clt]
+
 10.times do |i|
-  puts "criando user #{i}"
+  puts "Criando user #{i}"
+
+  role = ROLES.sample
+  contract_type = CONTRACT_TYPES.sample
+
   user = User.create!(
-    email_address: Faker::Internet.email,
+    email_address: Faker::Internet.unique.email,
     password: "1234",
-    role: :employee,
+    role: role,
     active: true,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
   )
-  puts "criando tabela #{i}"
-  employee = Employee.create!(
-    user: user,
-    hourly_rate: Faker::Number.decimal(l_digits: 2, r_digits: 2),
-  )
 
-  0.downto(0) do |i|
-    puts "criando tabela de registro de pontos #{i}"
-    date = i.days.ago.to_date
+  employee_attributes = {
+    user: user,
+    address: Faker::Address.full_address,
+    admission_date: Faker::Date.between(from: "2024-01-01", to: Date.current),
+    birth_date: Faker::Date.between(from: "1985-01-01", to: "2005-12-31"),
+    cnpj: Faker::IdNumber.brazilian_citizen_number(formatted: false),
+    contract_type: contract_type,
+    ctps: Faker::IdNumber.brazilian_citizen_number(formatted: false),
+    gender: Faker::Gender.binary_type,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    pis: Faker::IdNumber.brazilian_citizen_number(formatted: false),
+    pix_key: Faker::Number.decimal_part(digits: 10),
+    position: Faker::Job.position
+  }
+
+  if contract_type == :clt
+    employee_attributes[:salary] = Faker::Number.between(from: 2000, to: 8000)
+    employee_attributes[:hourly_rate] = nil
+  else
+    employee_attributes[:hourly_rate] = Faker::Number.between(from: 30, to: 150)
+    employee_attributes[:salary] = nil
+  end
+
+  employee = Employee.create!(employee_attributes)
+
+  # 🔥 Registro de ponto para os dois tipos
+  5.downto(1) do |d|
+    date = d.days.ago.to_date
 
     clock_in = Faker::Time.between(
-      from: date.to_time + 7.hours,
+      from: date.to_time + 8.hours,
       to: date.to_time + 9.hours
     )
 
     clock_out = Faker::Time.between(
-      from: clock_in + 7.hours,
+      from: clock_in + 8.hours,
       to: clock_in + 9.hours
     )
 
