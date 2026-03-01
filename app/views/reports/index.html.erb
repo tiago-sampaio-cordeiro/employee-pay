@@ -65,11 +65,7 @@
         </td>
 
         <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-          <% if result[:employee].freelancer? %>
-            <%= number_to_currency(result[:amount], unit: "R$", separator: ",", delimiter: ".") %>
-          <% elsif result[:employee].clt? %>
-            <%= number_to_currency(result[:employee].salary, unit: "R$", separator: ",", delimiter: ".") %>
-          <% end %>
+          <%= number_to_currency(result[:amount], unit: "R$", separator: ",", delimiter: ".") %>
         </td>
       </tr>
     <% end %>
