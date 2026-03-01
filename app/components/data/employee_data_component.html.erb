@@ -22,6 +22,15 @@
     </div>
 
     <div class="flex items-center justify-between">
+      <span class="text-gray-500 text-xs">Tipo de contrato</span>
+      <% if user.employee&.clt? %>
+        <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-950 text-blue-400 border border-blue-800">CLT</span>
+      <% else user.employee&.freelancer? %>
+        <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-800">Freelancer</span>
+      <% end %>
+    </div>
+
+    <div class="flex items-center justify-between">
       <span class="text-gray-500 text-xs">
         <%= user.employee&.clt? ? "Salário" : "Valor/hora" %>
       </span>
