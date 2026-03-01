@@ -28,7 +28,7 @@
       </div>
       <div>
         <%= f.label :cpf, "cpf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :cpf, value: user.employee&.mother_last_name, placeholder: "Ex: 000000000",
+        <%= f.text_field :cpf, value: user.employee&.cpf, placeholder: "Ex: 000000000",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
@@ -58,7 +58,7 @@
       </div>
       <div>
         <%= f.label :emergency_phone_number, "Telefone de emergência", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :emergency_phone_number, value: user.employee&.phone_number, placeholder: "Telefone de emergência",
+        <%= f.text_field :emergency_phone_number, value: user.employee&.emergency_phone_number, placeholder: "Telefone de emergência",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
       <div>
@@ -72,17 +72,17 @@
     <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
       <div>
         <%= f.label :nationality, "Nacionalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :nationality, value: user.first_name, placeholder: "Pais do funcionario",
+        <%= f.text_field :nationality, value: user.employee&.nationality, placeholder: "Pais do funcionario",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
         <%= f.label :city_born, "Naturalidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :city_born, value: user.last_name, placeholder: "Cidade onde nasceu",
+        <%= f.text_field :city_born, value: user.employee&.city_born, placeholder: "Cidade onde nasceu",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
         <%= f.label :uf_born, "uf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :uf_born, value: user.employee&.birth_date, placeholder: "uf de onde nasceu",
+        <%= f.text_field :uf_born, value: user.employee&.uf_born, placeholder: "uf de onde nasceu",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
     </div>
@@ -96,12 +96,12 @@
                       ["B-", "B-"],
                       ["AB+", "AB+"],
                       ["AB-", "AB-"]],
-                     { prompt: "Selecione", selected: user.employee&.gender },
+                     { prompt: "Selecione", selected: user.employee&.blood_group },
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
       </div>
       <div>
         <%= f.label :allergies, "Alergias", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :allergies, value: user.employee&.phone_number, placeholder: "Digite as alergias do funcionario",
+        <%= f.text_field :allergies, value: user.employee&.allergies, placeholder: "Digite as alergias do funcionario",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
     </div>
@@ -111,7 +111,7 @@
         <%= f.label :driver_license, "Possui habilitação de motorista", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
         <%= f.select :driver_license,
                      [["Sim", "Sim"], ["Não", "Não"]],
-                     { prompt: "Selecione", selected: user.employee&.gender },
+                     { prompt: "Selecione", selected: user.employee&.driver_license },
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
       </div>
       <div>
@@ -127,12 +127,12 @@
                       ["BD", "BD"],
                       ["BE", "BE"],
                      ],
-                     { prompt: "Selecione", selected: user.employee&.gender },
+                     { prompt: "Selecione", selected: user.employee&.driver_license_category },
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 cursor-pointer" %>
       </div>
       <div>
         <%= f.label :driver_license_number, "Número da habilitação", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :driver_license_number, value: user.employee&.birth_date, placeholder: "Digite o numero da habilitação",
+        <%= f.text_field :driver_license_number, value: user.employee&.driver_license_number, placeholder: "Digite o numero da habilitação",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition-colors duration-200 [color-scheme:dark]" %>
       </div>
     </div>
@@ -141,7 +141,7 @@
     <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
       <div>
         <%= f.label :cep, "cep", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :cep, value: user.employee&.address, placeholder: "Digite o cep",
+        <%= f.text_field :cep, value: user.employee&.cep, placeholder: "Digite o cep",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
@@ -151,31 +151,31 @@
       </div>
       <div>
         <%= f.label :house_number, "numero", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :house_number, value: user.employee&.address, placeholder: "Digite o numero do local",
+        <%= f.text_field :house_number, value: user.employee&.house_number, placeholder: "Digite o numero do local",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
     </div>
     <div class="grid sm:grid-col md:grid-cols-3 gap-4 mt-4">
       <div>
         <%= f.label :neighborhood, "bairro", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :neighborhood, value: user.employee&.address, placeholder: "Digite o cep",
+        <%= f.text_field :neighborhood, value: user.employee&.neighborhood, placeholder: "Digite o cep",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
         <%= f.label :city, "cidade", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :city, value: user.employee&.address, placeholder: "Digite a cidade",
+        <%= f.text_field :city, value: user.employee&.city, placeholder: "Digite a cidade",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
       <div>
         <%= f.label :uf_live, "uf", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-        <%= f.text_field :uf_live, value: user.employee&.address, placeholder: "uf de onde vive",
+        <%= f.text_field :uf_live, value: user.employee&.uf_live, placeholder: "uf de onde vive",
                          class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
       </div>
     </div>
   </div>
   <div class="gap-4 mt-4">
     <%= f.label :reference, "Referencia", class: "block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2" %>
-    <%= f.text_field :reference, value: user.first_name, placeholder: "Ex: mercado, loja, escola, banco,...",
+    <%= f.text_field :reference, value: user.employee&.reference, placeholder: "Ex: mercado, loja, escola, banco,...",
                      class: "w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-4 py-3 placeholder:text-gray-500 focus:outline-none focus:border-emerald-500 transition-colors duration-200" %>
   </div>
 
@@ -355,9 +355,8 @@
         }
     }
 
-    // Inicializar campos corretos se já houver valor selecionado
     document.addEventListener('DOMContentLoaded', function () {
-        const selected = document.querySelector('input[name*="contract_type"]:checked');
-        if (selected) toggleContractFields(selected.value);
+        const contractType = "<%= user.employee&.contract_type %>";
+        if (contractType) toggleContractFields(contractType);
     });
 </script>
