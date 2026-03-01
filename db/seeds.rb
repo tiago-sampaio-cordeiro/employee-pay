@@ -23,7 +23,7 @@ CONTRACT_TYPES = %i[freelancer clt]
     password: "1234",
     role: role,
     active: true,
-    first_name: Faker::Name.first_name,
+    first_name: Faker::Artist.name,
     last_name: Faker::Name.last_name
   )
 
@@ -39,7 +39,26 @@ CONTRACT_TYPES = %i[freelancer clt]
     phone_number: Faker::PhoneNumber.cell_phone,
     pis: Faker::IdNumber.brazilian_citizen_number(formatted: false),
     pix_key: Faker::Number.decimal_part(digits: 10),
-    position: Faker::Job.position
+    position: Faker::Job.position,
+    rg: Faker::Number.decimal_part(digits: 10),
+    cpf: Faker::IdNumber.brazilian_citizen_number,
+    mother_name: Faker::Artist.name,
+    mother_last_name: Faker::Name.last_name,
+    emergency_phone_number: Faker::PhoneNumber.cell_phone,
+    nationality: Faker::Nation.nationality,
+    city_born: Faker::Address.city,
+    uf_born: Faker::Address.country_code,
+    blood_group: Faker::Blood.rh_factor,
+    allergies: "nenhuma",
+    driver_license: Faker::DrivingLicence.british_driving_licence,
+    driver_license_category: "AB",
+    driver_license_number: Faker::IdNumber.brazilian_citizen_number,
+    cep: Faker::Address.zip_code,
+    house_number: Faker::Address.building_number,
+    neighborhood: Faker::Address.street_name,
+    city: Faker::Address.city,
+    uf_live: Faker::Address.country_code,
+    reference: Faker::Commerce.brand
   }
 
   if contract_type == :clt

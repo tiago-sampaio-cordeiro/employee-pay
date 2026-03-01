@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_28_173835) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_28_193745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,8 +28,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_28_173835) do
     t.string "cpf"
     t.datetime "created_at", null: false
     t.string "ctps"
-    t.string "driver_licence"
-    t.string "driver_licence_category"
+    t.string "driver_license"
+    t.string "driver_license_category"
     t.string "driver_license_number"
     t.string "emergency_phone_number"
     t.string "gender", null: false
