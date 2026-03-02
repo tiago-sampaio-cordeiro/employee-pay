@@ -14,11 +14,13 @@ module TimeClock
     attr_reader :employee, :kind, :punched_at
 
     def register_time_clock
-      TimePunch.create!(
+      punch = TimePunch.create!(
         employee: employee,
         kind: kind,
         punched_at: punched_at,
       )
+      Notification::PunchNotifier.new(employee: employee, punch: punch).call
+      punch
     end
   end
 end
