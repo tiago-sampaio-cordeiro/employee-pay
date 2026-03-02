@@ -6,11 +6,12 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    if can_register_punch?
+    # if can_register_punch?
       time_clock = TimeClock::EmployeeTimeClock.new(
         employee: Current.user.employee,
         kind: time_clocks_params[:kind],
         punched_at: DateTime.current).call
+    if time_clock
       redirect_to employees_path, notice: "Ponto registrado com sucesso!"
     else
       flash.now[:alert] = "Aguarde 15 minutos!"
