@@ -1,38 +1,19 @@
 module Payroll
   class HoursCalculator
-    def initialize(employee:, range:)
-      @employee = employee
-      @range = range
+    def initialize(punches:)
+      @punches = punches.sort_by(&:punched_at)
     end
 
     def call
-      calculate_hours
-    end
-
-    def calculate_hours
-      punches = fetch_punches.to_a
-      clock_ins = punches.select do |punch|
-        punch.clock_in?
-      end
-      clock_outs = punches.select do |punch|
-        punch.clock_out?
-      end
+      clock_ins  = @punches.select(&:clock_in?)
+      clock_outs = @punches.select(&:clock_out?)
 
       total_seconds = clock_ins.zip(clock_outs).sum do |clock_in, clock_out|
-        next 0 if clock_out.nil?
-        clock_out.punched_at.to_time - clock_in.punched_at.to_time
+        next 0 unless clock_out
+        clock_out.punched_at - clock_in.punched_at
       end
+
       total_seconds / 3600.0
-    end
-
-    private
-
-    attr_reader :employee, :range
-
-    def fetch_punches
-      employee.time_punches
-              .where(punched_at: range)
-              .order(:punched_at)
     end
   end
 end

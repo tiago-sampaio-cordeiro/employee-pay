@@ -1,10 +1,16 @@
 <div class="min-h-screen p-6">
   <div class="max-w-5xl mx-auto">
 
+    <% if alert = flash[:alert] %>
+      <div class="mb-6 px-4 py-3 bg-rose-950 border border-rose-700 text-rose-400 text-sm rounded-lg text-center tracking-wide">
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= render Pages::PageTitleComponent.new(title: "Funcionários") %>
 
     <div class="flex items-center justify-between mb-8">
-      <%= link_to "Novo Funcionário", new_register_path,
+      <%= link_to "Novo Funcionário", new_admin_register_path,
                   class: "bg-emerald-500 hover:bg-emerald-400 text-gray-950 text-sm font-semibold
                     px-6 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/20" %>
     </div>

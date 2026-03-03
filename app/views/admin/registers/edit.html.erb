@@ -20,7 +20,7 @@
       </div>
 
       <%= render "shared/form_registers",
-                 form_url: register_path(@user),
+                 form_url: admin_register_path(@user),
                  form_method: :patch,
                  user: @user,
                  submit_label: "Salvar",

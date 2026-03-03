@@ -1,4 +1,5 @@
-class RegistersController < ApplicationController
+class Admin::RegistersController < ApplicationController
+  before_action :require_admin
   def index
     @users = User.all
   end
@@ -56,7 +57,7 @@ class RegistersController < ApplicationController
     )
 
     if employee.call
-      redirect_to registers_path, notice: "Funcionário cadastrado com sucesso!"
+      redirect_to admin_registers_path, notice: "Funcionário cadastrado com sucesso!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -107,7 +108,7 @@ class RegistersController < ApplicationController
     )
 
     if employee.update
-      redirect_to registers_path, notice: "Funcionário atualizado com sucesso!"
+      redirect_to admin_registers_path, notice: "Funcionário atualizado com sucesso!"
     else
       render :edit, status: :unprocessable_entity
     end

@@ -34,7 +34,7 @@
 
       <%# Botão único baseado no próximo punch kind %>
       <% if next_punch_kind == "clock_in" %>
-        <%= form_with url: employees_path, method: :post do |f| %>
+        <%= form_with url: employees_time_punches_path, method: :post do |f| %>
           <%= f.hidden_field :kind, value: "clock_in" %>
           <%= f.submit "Registrar Entrada",
                        class: "w-full py-4 rounded-xl text-sm font-semibold tracking-widest uppercase
@@ -42,7 +42,7 @@
                         transition-all duration-200 cursor-pointer shadow-lg shadow-emerald-500/20" %>
         <% end %>
       <% else %>
-        <%= form_with url: employees_path, method: :post do |f| %>
+        <%= form_with url: employees_time_punches_path, method: :post do |f| %>
           <%= f.hidden_field :kind, value: "clock_out" %>
           <%= f.submit "Registrar Saída",
                        class: "w-full py-4 rounded-xl text-sm font-semibold tracking-widest uppercase
