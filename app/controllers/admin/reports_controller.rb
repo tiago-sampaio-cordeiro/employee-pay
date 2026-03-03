@@ -1,8 +1,16 @@
-class ReportsController < ApplicationController
+class Admin::ReportsController < ApplicationController
+  before_action :require_admin
 
   def index
     range = build_range
-    @results = Reports::AdminPayrollReport.new(range: range).call
+
+    if params[:employee_id].present?
+      @employee = Employee.find(params[:employee_id])
+      @results = Reports::EmployeeDailyReport.new(employee: @employee, range: range).call
+      render :employee_report
+    else
+      @results = Reports::AdminPayrollReport.new(range: range).call
+    end
   end
 
   private

@@ -1,4 +1,5 @@
-class TimePunchesController < ApplicationController
+class Employees::TimePunchesController < ApplicationController
+  before_action :require_employee
   helper_method :next_punch_kind
 
 
@@ -11,7 +12,7 @@ class TimePunchesController < ApplicationController
         employee: Current.user.employee,
         kind: time_clocks_params[:kind],
         punched_at: DateTime.current).call
-      redirect_to time_punches_path, notice: "Ponto registrado com sucesso!"
+      redirect_to employees_time_punches_path, notice: "Ponto registrado com sucesso!"
     else
       flash.now[:alert] = "Aguarde 15 minutos!"
       render :index, status: :unprocessable_entity

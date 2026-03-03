@@ -1,5 +1,5 @@
 module Reports
-  class PaymentEmployeeQuery
+  class AdminTimePunchesQuery
     def initialize(range:)
       @range = range
     end
