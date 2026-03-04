@@ -24,7 +24,7 @@
   </head>
 
   <body class="bg-[#030712] pb-24">
-    <% if authenticated? %>
+    <% if authenticated? && request.path != root_path %>
       <%= render Navbar::NavbarComponent.new %>
     <% end %>
     <main class="mt-32">
