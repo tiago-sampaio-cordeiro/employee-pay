@@ -72,5 +72,13 @@ RSpec.configure do |config|
 
   RSpec.configure do |config|
     config.include FactoryBot::Syntax::Methods
+
+    # helper para autenticar nos testes
+    config.include(Module.new do
+      def sign_in(user)
+        session = user.sessions.create!
+        cookies.signed[:session_id] = { value: session.id, httponly: true }
+      end
+    end)
   end
 end
