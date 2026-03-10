@@ -5,8 +5,8 @@ RSpec.describe SessionsController, type: :controller do
   let(:employee) { create(:user) }
 
   describe 'GET#new' do
-    context "render template" do
-      it "redirects to dashboard" do
+    context "render /sessions/new" do
+      it "render template" do
         get :new
         expect(response).to render_template(:new)
       end
