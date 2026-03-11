@@ -25,8 +25,6 @@ gem "tailwindcss-ruby", "~> 4.1", ">= 4.1.18"
 gem "bcrypt", "~> 3.1.7"
 # use foreman to run multiples process(Rails + tailwind watcher)
 gem "foreman", "~> 0.90.0"
-# use gem faker to create random names for tests
-gem "faker", "~> 3.6"
 # for debugg
 gem "pry-rails", "~> 0.3.11"
 # linguagem
@@ -70,8 +68,8 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   # gems usadas para emails
-  gem 'dotenv-rails', '~> 3.2'
-  gem 'letter_opener', '~> 1.10'
+  gem "dotenv-rails", "~> 3.2"
+  gem "letter_opener", "~> 1.10"
 end
 
 group :test do
@@ -79,6 +77,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-  # gem usada para emails
-  # gem 'dotenv-rails', '~> 3.2'
+  gem "rspec-rails", "~> 8.0", ">= 8.0.3"
+
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
+
+  gem "factory_bot_rails", "~> 6.5", ">= 6.5.1"
+
+  # use gem faker to create random names for tests
+  gem "faker", "~> 3.6"
 end
