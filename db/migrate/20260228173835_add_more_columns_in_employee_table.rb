@@ -18,6 +18,6 @@ class AddMoreColumnsInEmployeeTable < ActiveRecord::Migration[8.1]
     add_column :employees, :neighborhood, :string
     add_column :employees, :city, :string
     add_column :employees, :uf_live, :string
-    add_column :employees, :reference, :stringq
+    add_column :employees, :reference, :string
   end
 end
