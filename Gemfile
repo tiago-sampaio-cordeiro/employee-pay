@@ -22,7 +22,7 @@ gem 'view_component', '~> 4.4'
 gem 'tailwindcss-rails', '~> 4.4'
 gem 'tailwindcss-ruby', '~> 4.1', '>= 4.1.18'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.22"
 # use foreman to run multiples process(Rails + tailwind watcher)
 gem 'foreman', '~> 0.90.0'
 # use gem faker to create random names for tests
